@@ -22,39 +22,35 @@ public class ChromeLaunchTest {
 
     @Test
     public void Test() {
-
-        log.info("--------------------------------------------------------------------------------");
         System.setProperty("webdriver.chrome.driver", QaConstants.CHROME_DRIVER_LOCATION);
-        log.info("--------------------------------------------------------------------------------");
-        log.info(System.getProperty("user.dir") + "/" + QaConstants.CHROME_DRIVER_LOCATION);
         WebDriver driver = new ChromeDriver();
-        log.info(driver);
+        try {
+            log.info("--------------------------------------------------------------------------------");
+            WebDriverWait wait = new WebDriverWait(driver, 5);
+            driver.navigate().to("http://shopkick.testlodge.com/projects/10019/runs/176127");
+            driver.manage().window().maximize();//
+            driver.findElement(By.name("email")).sendKeys(userName);
+            driver.findElement(By.name("password")).sendKeys(password);
 
-        WebDriverWait wait = new WebDriverWait(driver, 5);
-        driver.navigate().to("http://shopkick.testlodge.com/projects/10019/runs/176127");
-        driver.manage().window().maximize();//
-        driver.findElement(By.name("email")).sendKeys(userName);
-        driver.findElement(By.name("password")).sendKeys(password);
+            driver.findElement(By.className("submit")).click();
+            wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("second")));
 
-        driver.findElement(By.className("submit")).click();
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("second")));
+            assertEquals("Welcome", driver.findElement(By.className("first")).getText().trim());
+            log.info(driver.findElement(By.className("first")).getText() + " " + driver.findElement(By.className("second")).getText());
+            String a = driver.findElement(By.className("test_run")).getText().trim();
 
-        assertEquals("Welcome", driver.findElement(By.className("first")).getText().trim());
-        log.info(driver.findElement(By.className("first")).getText() + " " + driver.findElement(By.className("second")).getText());
-        String a = driver.findElement(By.className("test_run")).getText().trim();
+            assertEquals("Report NOT Complete", "Complete", driver.findElement(By.className("details")).getText().trim());
 
-        assertEquals("Report NOT Complete", "Complete", driver.findElement(By.className("details")).getText().trim());
+            String notRun = driver.findElements(By.className("count_cont")).get(0).getText().trim();
+            String pass = driver.findElements(By.className("count_cont")).get(1).getText().trim();
+            String fail = driver.findElements(By.className("count_cont")).get(2).getText().trim();
 
-        String notRun = driver.findElements(By.className("count_cont")).get(0).getText().trim();
-        String pass = driver.findElements(By.className("count_cont")).get(1).getText().trim();
-        String fail = driver.findElements(By.className("count_cont")).get(2).getText().trim();
-
-        log.info(pass);
-
-
-        log.info("--------------------------------------------------------------------------------");
-
-        driver.close();
-
+            log.info(pass);
+            log.info("--------------------------------------------------------------------------------");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            driver.close();
+        }
     }
 }
