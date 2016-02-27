@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -19,7 +20,8 @@ public class ChromeLaunchTest {
         System.setProperty("webdriver.chrome.driver", QaConstants.CHROME_DRIVER_LOCATION);
         WebDriver driver = new ChromeDriver();
         log.info(driver);
-        driver.get("https://shopkick.testlodge.com/projects/10019/test_runs");
+        driver.get("https://www.mylyve.com/gateway/#/login");
+        log.info("TEXT: " + driver.findElement(By.id("user_submit")).getText().toString());
         log.info("--------------------------------------------------------------------------------");
         driver.close();
 
