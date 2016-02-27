@@ -6,6 +6,7 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import org.openqa.selenium.By;
+import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,6 +30,10 @@ public class ChromeLaunchTest {
             WebDriverWait wait = new WebDriverWait(driver, 5);
             driver.navigate().to("http://shopkick.testlodge.com/projects/10019/runs/176127");
             driver.manage().window().maximize();//
+
+            log.info("--------------------------------------------------------------------------------");
+            log.info(driver.findElement(By.cssSelector("[for=\"email\"]")).getText());
+
             driver.findElement(By.name("email")).sendKeys(userName);
             driver.findElement(By.name("password")).sendKeys(password);
 
@@ -47,6 +52,8 @@ public class ChromeLaunchTest {
 
             log.info(pass);
             log.info("--------------------------------------------------------------------------------");
+        } catch (ElementNotVisibleException e) {
+            e.printStackTrace();
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
