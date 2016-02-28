@@ -32,8 +32,8 @@ public class ChromeLaunchTest {
             driver.manage().window().maximize();//
 
             log.info("--------------------------------------------------------------------------------");
-            log.info("35" + driver.findElement(By.cssSelector("[for=\"email\"]")).getText());
-            log.info("36" + driver.findElement(By.name("email")).getText());
+            log.info("35" + driver.findElement(By.cssSelector("[for=\"email\"]")));
+            log.info("36" + driver.findElement(By.name("email")));
 
             driver.findElement(By.name("email")).sendKeys(userName);
             driver.findElement(By.name("password")).sendKeys(password);
