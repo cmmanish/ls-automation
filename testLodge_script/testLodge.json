@@ -1,0 +1,18 @@
+{
+  "resultsList": [
+    {
+      "elapsed": 36,
+      "runStatus": "passed",
+      "testSectionName": "EmailAuthentication",
+      "testName": "EmailAuthentication.Test3_InvalidLoginWithEmailAccount"
+    },
+    {
+      "elapsed": 36,
+      "runStatus": "passed",
+      "testSectionName": "EmailAuthentication",
+      "testName": "EmailAuthentication.TestTest4_InvalidEmail"
+    }
+  ],
+  "reportName": "Android_02-29-08:50_testLodge.json",
+  "buildNo": "4.8.4-4484"
+}

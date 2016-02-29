@@ -1,6 +1,7 @@
 package com.lyve.qa.tests.buildAcceptanceTest;
 
 import com.lyve.qa.Util.QaConstants;
+import com.lyve.qa.Util.QaReportProcessor;
 import org.apache.log4j.Logger;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class ChromeLaunchTest {
     private static String password = "shopkick123";
 
     @Test
-    public void Test() {
+    public void Test1() {
         System.setProperty("webdriver.chrome.driver", QaConstants.CHROME_DRIVER_LOCATION);
         WebDriver driver = new ChromeDriver();
         try {
@@ -62,5 +63,12 @@ public class ChromeLaunchTest {
         } finally {
             driver.close();
         }
+    }
+
+    @Test
+    public void Test2() {
+        QaReportProcessor qaReportProcessor = new QaReportProcessor();
+        log.info(qaReportProcessor.getTestcaseCount());
+        log.info(qaReportProcessor.isTestcaseNamesEmpty());
     }
 }
